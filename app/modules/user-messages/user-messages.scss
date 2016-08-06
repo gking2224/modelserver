@@ -1,0 +1,44 @@
+#userMessages {
+  z-index:50;
+  opacity: 1;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  position:fixed;
+  p {
+    color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-family: Verdana;
+    transform: translateY(0px);
+    border: 1px solid #905050;
+    border-radius: 8px;
+    font-weight: bold;
+
+    &.SUCCESS {
+      background-color: #5ebb64;
+    }
+    &.INFO {
+      background-color: #6cb2db;
+    }
+    &.WARN {
+      background-color: #dcc73e;
+    }
+    &.ERROR {
+      background-color: #ec8989;
+    }
+
+    span {
+      position: relative;
+      font-weight: normal;
+      text-decoration: underline;
+      float: right;
+      vertical-align: top;
+      cursor: pointer;
+    }
+  }
+}
+@media only screen and (min-width: 940px) {
+  #userMessages {
+    width: 900px;
+  }
+}

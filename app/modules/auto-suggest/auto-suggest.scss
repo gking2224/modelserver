@@ -1,0 +1,25 @@
+
+div {
+  &.autoSuggestCtr {
+    position: absolute;
+    
+    border: {
+      width: 1px;
+      style: dotted;
+      color: #cdc;
+      top: 0;
+    }
+    
+    p {
+      margin: 0;
+      padding: 3px;
+      
+      background: {
+        color: #fff;
+      }
+      &.highlighted {
+        background-color: #eee;
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+
+.buttons {
+  width: 60px;
+  border: 0;
+}
+@media only screen and (min-width: 940px) {
+  #variablesCtr {
+    width: 534px;
+  }
+  #naturesCtr {
+    width: 340px;
+  }
+
+  #addNatureCtr input {
+    width: 290px;
+  }
+
+  #upsertVariableCtr {
+    width: 500px;
+    margin: 300px 200px;
+  }
+  
+}
+
+@media only screen and (max-width: 600px) and (min-width: 300px) {
+  th.variableType, td.variableType {
+    display:none;
+  }
+}

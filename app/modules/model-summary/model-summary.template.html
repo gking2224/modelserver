@@ -1,0 +1,33 @@
+<section id="modelSummary" *ngIf="model">
+  <label [msToggle]="'div'">Details</label>
+  <div>
+    <p class="summaryItem">
+      <label>Group:</label>
+      {{model.manifest.type.name}}
+    </p>
+    <p class="summaryItem">
+      <label>Name:</label>
+      {{model.manifest.name}}
+    </p>
+    <p class="summaryItem" *ngIf="model.version">
+      <label>Version:</label>
+      {{model.version.majorVersion}}.{{model.version.minorVersion}}
+    </p>
+
+    <section *ngIf="showScript" class="scriptViewCtr">
+      <label [msToggle] [msToggleStartHidden]="true">Script</label>
+      <pre>{{model.script}}</pre>
+    </section>
+  </div>
+  <section *ngIf="showButtons" class="buttonCtr">
+      <div class="rightButtons">
+        <button (click)="onEdit()"  *ngIf="model" class="confirm">Edit</button>
+        <button (click)="onExecute()"  *ngIf="model" class="confirm">Execute</button>
+      </div>
+      <div class="leftButtons" *ngIf="model">
+        <button (click)="onDisable()" class="warn" *ngIf="model.enabled">Disable</button>
+        <button (click)="onEnable()" class="warn" *ngIf="!model.enabled">Enable</button>
+        <button (click)="onDelete()" class="warn">Delete</button>
+      </div>
+  </section>
+</section>

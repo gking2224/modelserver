@@ -1,0 +1,117 @@
+<div id="modelExecutorCtr">
+  <h2>Model Execution</h2>
+  <ms-modelsummary [model]="model" [showScript]="true"></ms-modelsummary>
+  
+  <!--INPUTS-->
+  <section id="inputsCapture">
+    <label msToggle>Inputs</label>
+    <table>
+      <thead>
+        <tr>
+          <th class="inputNameCol">Name</th>
+          <th class="inputTypeCol">Type</th>
+          <th class="inputMandatoryCol">Mandatory</th>
+          <th class="inputValueCol">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let v of inputVariables" class="inputRow">
+          <td class="inputNameCol"><span>{{v.variable.name}}</span></td>
+          <td class="inputTypeCol"><span>{{v.variable.type}}</span></td>
+          <td class="inputMandatoryCol"><span>{{v.variable.mandatory}}</span></td>
+          <td class="inputValueCol" [class.mandatorySatisfied]="(v.value && v.variable.mandatory) || !v.variable.mandatory">
+            <input class="variableInput" [(ngModel)]="v.value" placeholder="<Enter value>"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  
+  <section id="executionResult" *ngIf="response">
+    <label [msToggle]="'section'">Result</label>
+    <!--SUMMARY-->
+    <section>
+      <label [msToggle]="'p'">Summary</label>
+      <p class="summaryItem" id="outcome">
+        <span *ngIf="response.success" class="success">Success</span>
+        <span *ngIf="!response.success" class="failure">Failed</span>
+      </p>
+      <p *ngIf="response.requestTime" class="summaryItem">
+        <label>Request Time</label>
+        <span>{{response.requestTime}}</span>
+      </p>
+      <p class="summaryItem">
+        <label>Execution Time</label>
+        <span>{{response.durationInNano / 1000000}} ms</span>
+      </p>
+      <p *ngIf="response.executorClassName" class="summaryItem">
+        <label>Executor</label>
+        <span>{{response.executorClassName}}</span>
+      </p>
+    </section>
+    <!--ERROR-->
+    <section *ngIf="response.error" id="executionError">
+      <label [msToggle]="'p'">Error</label>
+      <p class="summaryItem"><label>Error Code</label><span>{{response.error.code}}</span></p>
+      <p class="summaryItem"><label>Error Message</label><span>{{response.error.message}}</span></p>
+      <p class="summaryItem"><label>Error Class</label><span>{{response.error.exceptionClass}}</span></p>
+      <p class="summaryItem" id="stackTrace" *ngIf="response.error.stackTrace">
+        <label [msToggle] [msToggleStartHidden]="true">Stack Trace</label>
+        <span>{{response.error.stackTrace}}</span>
+      </p>
+    </section>
+    <!--DECLARED OUTPUTS-->
+    <section id="declaredOutputs" class="outputs">
+      <label msToggle>Declared Outputs</label>
+      <table><thead><tr><th>Name</th><th>Value</th></tr></thead>
+      <tbody>
+      <tr *ngFor="let o of declaredOutVariables" class="responseOutput">
+        <td class="outputKey">{{o.key}}</td><td>{{o.value}}</td>
+      </tr>
+      </tbody></table>
+    </section>
+    <!--ADDITIONAL OUTPUTS-->
+    <section *ngIf="undeclaredOutVariables.length > 0" id="undeclaredOutputs" class="outputs">
+      <label msToggle [msToggleStartHidden]="true">Additional Outputs</label>
+      <table><thead><tr><th>Name</th><th>Value</th></tr></thead>
+      <tbody>
+      <tr *ngFor="let o of undeclaredOutVariables" class="responseOutput">
+        <td class="outputKey">{{o.key}}</td><td>{{o.value}}</td>
+      </tr>
+      </tbody></table>
+    </section>
+    <!--WARNINGS-->
+    <section *ngIf="response.warnings && response.warnings.length > 0" id="executionWarnings">
+      <label msToggle>Warnings</label>
+      <ul>
+        <li class="warning" *ngFor="let w of response.warnings">
+          <span *ngIf="w.code != 0" class="warningCode">[{{w.code}}] </span>
+          <span *ngIf="w.summary">{{w.summary}}</span><span *ngIf="w.summary && w.detail">: </span>
+          <span *ngIf="w.summary && w.detail">{{w.detail}}</span>
+        </li>
+      </ul>
+    </section>
+    <!--STDOUT-->
+    <section *ngIf="response.stdout" id="responseStdOut">
+      <label msToggle [msToggleStartHidden]="true">Standard Output</label>
+      <pre>{{response.stdout}}</pre>
+    </section>
+    <!--STDERR-->
+    <section *ngIf="response.stderr" id="responseStdErr">
+      <label msToggle [msToggleStartHidden]="true">Standard Error</label>
+      <pre>{{response.stderr}}</pre>
+    </section>
+  </section>
+  <!--BUTTONS-->
+  <section class="buttonCtr">
+      <div class="leftButtons">
+        <button (click)="browser()" class="back">Back to Model Browser</button>
+      </div>
+      <div class="rightButtons">
+        <button (click)="edit()" class="confirm">Edit</button>
+        <button (click)="execute()" class="confirm">Execute</button>
+      </div>
+  </section>
+</div>
+
+<ms-user-messages></ms-user-messages>

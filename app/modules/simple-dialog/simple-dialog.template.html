@@ -1,0 +1,16 @@
+<div id="simpleDialog" class="dialogCtr">
+  <section class="buttonCtr">
+    <label [msDraggable]="'#simpleDialog'">{{title}}</label>
+    <p class="summaryItem inline">
+      <label>{{label}}</label>
+      <input [(ngModel)]="value" [msAutoSuggest]="autoSuggestType"
+             [(value)]="value" (save)="onSave()" (cancel)="onCancel()"
+             placeholder="{{placeholder}}"
+            (keyup.escape)="onCancel()"/>
+    </p>
+    <div class="rightButtons">
+      <button (click)="onCancel()" class="warn">Cancel</button>
+      <button (click)="onSave()" class="confirm">Save</button>
+    </div>
+  </section>
+</div>

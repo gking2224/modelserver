@@ -1,0 +1,81 @@
+<div id="modelBrowser">
+  <h2>Model Browser</h2>
+  <div class="hSectionCtr">
+    <section class="hierarchyBrowser">
+      <label>Model Groups</label>
+      <select size="10">
+        <option ng-selected="selectedType && selectedType.name == type.name"
+           *ngFor="let type of types" value="{{type.id}}" (click)="onSelectType(type)">
+          {{type.name}}
+        </option>
+      </select>
+      <div class="rightButtons">
+        <button *ngIf="selectedType" (click)="deleteModelType()" class="confirm">Delete</button>
+        <button (click)="newModelType()" class="confirm">New Model Group</button>
+      </div>
+    </section>
+    
+    <section class="hierarchyBrowser">
+      <label>Models</label>
+      <select size="10">
+        <option *ngIf="!manifests || manifests.length == 0">&nbsp;</option>
+        <option ng-selected="selectedManifest && mf.name === selectedManifest.name"
+                *ngFor="let mf of manifests" value="{{mf.id}}" (click)="onSelectManifest(mf)">
+          {{mf.name}}
+        </option>
+      </select>
+      <div class="rightButtons">
+        <button *ngIf="selectedManifest" (click)="deleteManifest()" class="confirm">Delete</button>
+        <button (click)="newModelManifest()" *ngIf="selectedType" class="confirm">New Model</button>
+      </div>
+    </section>
+    
+    <section class="hierarchyBrowser">
+      <label>Versions</label>
+      <select size="10">
+        <option *ngIf="!versions || versions.length == 0">&nbsp;</option>
+        <option ng-selected="selectedVersion && selectedVersion.getDisplayString() == v.getDisplayString()" 
+             *ngFor="let v of versions" value="{{v.urlString}}" (click)="onSelectVersion(v)">
+          {{v.getDisplayString()}}
+        </option>
+      </select>
+      <div class="rightButtons">
+        <button *ngIf="selectedVersion && selectedVersion.enabled" (click)="disableVersion()" class="confirm">Disable</button>
+        <button *ngIf="selectedVersion && !selectedVersion.enabled" (click)="enableVersion()" class="confirm">Enable</button>
+        <button (click)="newModelVersion()"  *ngIf="selectedManifest" class="confirm">New Version</button>
+      </div>
+    </section>
+    
+  </div>
+
+  <!--<section class="buttonCtr">-->
+      <!--<div class="rightButtons">-->
+        <!--<button (click)="newModelVersion()"  *ngIf="selectedManifest" class="confirm">New Version</button>-->
+        <!--<button (click)="newModelManifest()" *ngIf="selectedType" class="confirm">New Model</button>-->
+        <!--<button (click)="newModelType()"  class="confirm">New Model Group</button>-->
+      <!--</div>-->
+  <!--</section>-->
+</div>
+
+<div id="selectedModelCtr" *ngIf="model">
+  <ms-modelsummary (execute)="executeModel()" (edit)="editModel()" [model]="model" [showButtons]="true"></ms-modelsummary>
+</div>
+
+<div id="dialogBackdrop" *ngIf="addingType || addingManifest"></div>
+
+<div class="dialogCtr" *ngIf="addingType">
+  <ms-simple-dialog (cancel)="cancelNewType()" (save)="saveNewType($event)"
+                    [label]="'Name'" [placeholder]="'Group Name'"
+                    [title]="'New Model Type'">
+  </ms-simple-dialog>
+</div>
+
+<div class="dialogCtr" *ngIf="addingManifest">
+  <ms-simple-dialog (cancel)="cancelNewManifest()" (save)="saveNewManifest($event)"
+                    [label]="'Name'" [placeholder]="'Model Name'" [title]="'New Model'">
+  </ms-simple-dialog>
+</div>
+
+
+<ms-user-messages></ms-user-messages>
+

@@ -1,0 +1,21 @@
+public class Script extends me.gking2224.model.execution.groovy.AbstractGroovyClassLoaderScriptV1 {
+  public Script(
+      def inputParams,
+      def warnings,
+      def outputParams,
+      def logger) {
+    super(inputParams, warnings, outputParams, logger);
+  }
+  
+  protected void doExecute() {
+INJECTED_SCRIPT
+  }
+  
+  /*def String toString() {
+    StringBuilder sb = new StringBuilder()
+    sb.append("Script: ").append(
+"INJECTED_SCRIPT" // needs to be escaped for e.g. quotes
+    )
+    sb.toString()
+  }*/
+}

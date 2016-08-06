@@ -1,0 +1,389 @@
+* {
+  font-size: 10pt;
+}
+
+input, select {
+  outline: none;
+}
+
+.dragging {
+  opacity: 0.5 !important;
+}
+
+div.autoSuggestCtr {
+  position:absolute;
+  border: 1px solid #ccc;
+  border-top: 0;
+}
+
+div.autoSuggestCtr p {
+  margin: 0;
+  background-color: #fff;
+  padding: 3px;
+}
+
+div.autoSuggestCtr p.highlighted {
+  background-color: #eee;
+}
+
+ms-home #router-outlet-ctr {
+  padding-top: 1em;
+  //border: 1px solid #0e419e;
+  min-height: 600px;
+  border-radius: 4px;
+}
+
+ms-home #router-outlet-ctr>* {
+  /*   padding: 0.5em; */
+  
+}
+
+nav {
+  margin-left: 10px;
+}
+
+table th.buttons.header {
+  background-color: inherit;
+}
+
+table th {
+  background-color: #4a6086;
+  color: #fbf9f2;
+  font-weight: 100;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+table td, table th {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+table tbody td.hideBorder, table thead th.hideBorder {
+  border: none;
+}
+
+thead th {
+  text-align: left;
+}
+
+td input {
+  border: none;
+  background-color: #dcdde8;
+  width: 100%;
+  padding: 3px;
+}
+
+tr.inputRow td input {
+  background-color: #e46767;
+}
+
+tr.inputRow td.mandatorySatisfied input {
+  background-color: #a9f1a9;
+}
+
+button.delete, button.add, button.edit {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  background-size: contain;
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
+
+button.edit {
+  background-image: url('/resources/images/edit.png')
+    /*   background-image: contain; */
+}
+
+button.delete {
+  background-image: url('/resources/images/trash.png');
+  /*   background-image: contain; */
+}
+
+button.add {
+  background-image: url('/resources/images/add.png');
+  /*   background-image: contain; */
+}
+
+section.buttonCtr {
+  overflow: auto;
+}
+
+section.buttonCtr .rightButtons, section.buttonCtr .leftButtons {
+  display: inline-block;
+}
+
+section.buttonCtr .rightButtons {
+  float: right;
+}
+
+section.buttonCtr .leftButtons {
+  float: left;
+}
+
+.lozenge {
+  padding: 3px;
+  margin: 5px;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: #ffcc99;
+}
+
+.lozenge button {
+  float: right;
+}
+
+div.buttonCtr {
+  padding: 5px;
+  margin: 3px;
+  overflow: auto
+}
+
+div.buttonCtr button {
+  float: right;
+  margin: 2px 2px 2px 3px;
+}
+
+section.buttonCtr button {
+  margin: 2px 2px 2px 3px;
+}
+
+.clearfix:after {
+  content: ".";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+textarea {
+  outline: none;
+}
+
+p {
+  margin: 4px 0;
+}
+
+section {
+  border: 1px solid #0e419e;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 3px
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+section>label, section>div>label {
+  display: block;
+  border-bottom: 1px solid #cccccc;
+  padding: 5px;
+  background-color: #3377ee;
+  color: #fbf9f3;
+  margin: -10px -10px 20px -10px;
+}
+
+section section>label, section section>div>label {
+  background-color: #a9c0e8;
+  color: #2e312e;
+}
+
+button.cancel {
+  background-color: #f9f9f9;
+  font-size: 120%;
+  color: #3377ee;
+  border: 1px solid #2e312e;
+}
+
+button.warning {
+  background-color: #ff9999;
+  border: 1px solid #2e312e;
+}
+
+button.confirm {
+  background-color: #3377ee;
+  color: #f5f3f5;
+  border: 1px solid #2e312e;
+}
+
+button.back {
+  background-color: #a7acb3;
+  color: #060506;
+  border: 1px solid #2e312e;
+}
+
+p label {
+  width: auto;
+  border-bottom: 0;
+  margin-right: 1em;
+}
+
+div.hSectionCtr section {
+  display: block;
+}
+
+div.buttonOptions {
+  display: inline;
+}
+
+span {
+  overflow-wrap: break-word;
+}
+
+span.header {
+  font-weight: bold;
+  display: inline-block;
+}
+
+p.summaryItem {
+  padding: 3px 8px;
+}
+
+p.summaryItem.inline {
+  display: inline-block;
+}
+
+p.summaryItem label {
+  display: inline-block;
+  width: 120px;
+  margin-right: 0;
+  font-weight: bold;
+  color: #4a5292;
+}
+
+p.summaryItem span {
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  /*   white-space: nowrap; */
+  /*   text-overflow: ellipsis;   */
+}
+
+@media only screen and (min-width: 940px) {
+  ms-home #router-outlet-ctr {
+    width: 900px;
+    padding: 10px;
+  }
+  /*    ms-home #router-outlet-ctr section{ */
+  /*      margin: 8px; */
+  /*    } */
+  /*    html body { */
+  /*      margin: 7px; */
+  /*    } */
+  div.hSectionCtr section, section div.hSectionCtr section {
+    display: inline-block;
+    vertical-align: top;
+  }
+  hSectionCtr section {
+    width: 437px;
+  }
+  section .hSectionCtr section {
+    width: 426px;
+  }
+  .hSectionCtr {
+    margin: -8px 0;
+  }
+}
+
+@media only screen and (max-width: 939px) {
+  ms-home #router-outlet-ctr {
+    padding: 5px;
+    margin: 5px;
+  }
+  html body {
+    margin: 3px;
+  }
+}
+
+@media only screen and (min-device-width : 375px) and (max-device-width
+  : 667px) and (orientation : portrait) {
+  ms-home #router-outlet-ctr {
+    width: 580px;
+    padding: 0;
+  }
+  ms-home #router-outlet-ctr section {
+    margin: 8px;
+  }
+  .hSectionCtr section, section .hSectionCtr section {
+    display: block;
+  }
+  p.summaryItem label {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  th.variableType, td.variableType {
+    display: none;
+  }
+  .buttonCtr button {
+    
+  }
+  section.buttonCtr .rightButtons, section.buttonCtr .leftButtons {
+    float: none;
+    display: block
+  }
+  div.buttonOptions {
+    display: block;
+  }
+  div.buttonOptions span {
+    display: block;
+  }
+  p.summaryItem label {
+    display: block;
+  }
+  .hSectionCtr section, section .hSectionCtr section {
+    display: block;
+  }
+}
+
+@media only screen and (max-device-width : 320px) and (orientation :
+  portrait) {
+  select {
+    
+  }
+}
+
+.toggleControl {
+  cursor: hand;
+}
+
+#dialogBackdrop {
+  position: absolute;
+  top: 0;
+  opacity: 0.9;
+  height: 100vh;
+  display: block;
+  background-color: #fff;
+  padding: 30px;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.dialogCtr {
+  z-index: 99;
+  background: rgba(255, 255, 255, 1);
+  opacity: 1;
+  position: absolute;
+  left: 150px;
+  top: 150px;
+}
+.dialogCtr section {
+  margin: 0;
+}
+
+.CodeMirror {
+  font-size: 10pt;
+  resize: none;
+  border: thin #d0d0d0 solid;
+  font-size: 10pt;
+  font-family: Courier;
+}

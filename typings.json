@@ -1,0 +1,13 @@
+{
+  "globalDevDependencies": {
+    "core-js": "registry:dt/core-js#0.0.0+20160602141332",
+    "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
+    "reflect-metadata": "registry:dt/reflect-metadata#0.0.0+20160630155503",
+    "require": "registry:dt/require#2.1.20+20160316155526"
+  },
+  "globalDependencies": {},
+  "dependencies": {
+    "dateformat": "registry:npm/dateformat#1.0.0+20160723033700",
+    "rxjs": "npm:rxjs"
+  }
+}

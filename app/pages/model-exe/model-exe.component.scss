@@ -1,0 +1,67 @@
+#inputsCapture table {
+  
+}
+.summaryItem span.success {
+  color: #05a92b;
+  font-weight: bold;
+}
+.summaryItem span.failure {
+  color: #dc0404;
+}
+#executionError {
+  color: #dc0404;
+}
+#executionError p.summaryItem span {
+  width: inherit;
+  
+}
+#stackTrace label {
+  display:block;
+}
+#stackTrace span {
+  width: 100%;
+  overflow: scroll;
+  height: 300px;
+  display: block;
+}
+#executionWarnings ul {
+  padding: 10px;
+  margin: 0;
+}
+ul li.warning {
+  color: #d8943a;
+  list-style-type: none;
+}
+span.warningCode {
+  width: 60px;
+  display:inline-block;
+}
+
+tr.responseOutput td {
+  overflow: hidden;
+  overflow-wrap: break-word;
+  vertical-align: top;
+}
+
+#responseStdOut pre, #responseStdErr pre {
+  font-family: Courier, sans-serif;
+  margin: 10px;
+}
+
+#responseStdErr pre {
+  color: #dc0404;
+}
+
+
+@media only screen and (min-width: 940px) {
+  
+}
+
+
+
+
+@media only screen and (max-width: 600px) and (min-width: 300px) {
+  th.inputTypeCol, td.inputTypeCol {
+    display:none;
+  }
+}

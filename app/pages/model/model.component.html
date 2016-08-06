@@ -1,0 +1,120 @@
+<div id="modelEditor" *ngIf="model">
+
+  <h2>Model Editor</h2>
+  <ms-modelsummary [model]="model"></ms-modelsummary>
+
+  <section id="scriptEditorCtr">
+    <label [msToggle]>Script</label>
+    <ms-editor [id]="'scriptEditor'" [scriptValue]="model.script" (update)="scriptChanged($event)"></ms-editor>
+  </section>
+  
+  <div class="hSectionCtr">
+  
+    <section id="naturesCtr">
+      <label [msToggle]>Natures</label>
+      <div>
+        <table>
+          <tbody>
+            <tr *ngFor="let nature of model.natures">
+              <td>{{nature}}</td>
+              <td class="buttons">
+                <button class="edit" (click)="upsertNature(nature)"></button>
+                <button class="delete" (click)="deleteNature(nature)"></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="buttonCtr">
+          <button class="confirm" (click)="upsertNature(null)">
+            Add Nature
+          </button>
+        </div>
+      </div>
+    </section>
+    
+    <section id="variablesCtr">
+      <label [msToggle]>Variables</label>
+      <div>
+        <table>
+          <thead *ngIf="model.variables.length > 0"><tr>
+            <th class="variableName header">Name</th>
+            <th class="variableType header">Type</th>
+            <th class="variableDirection header">Direction</th>
+            <th class="variableMandatory header">Mandatory</th>
+            <th class="buttons header">&nbsp;</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let v of model.variables">
+              <td class="variableName">{{v.name}}</td>
+              <td class="variableType">{{v.type}}</td>
+              <td class="variableDirection">{{v.direction}}</td>
+              <td class="variableMandatory"><input readonly="true" type="checkbox" onclick="return false" [checked]="v.mandatory"/></td>
+              <td class="buttons">
+                <button class="edit" (click)="upsertVariable(v)"></button>
+                <button class="delete" (click)="deleteVariable(v)"></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="buttonCtr">
+          <button class="confirm" (click)="upsertVariable()">Add Variable</button>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <section class="buttonCtr">
+    <div class="leftButtons">
+      <button (click)="browser()" class="warn">Back to Model Browser</button>
+  </div>
+    <div class="rightButtons">
+      <button (click)="reset()" class="warn">Reset</button>
+      <div class="buttonOptions">
+        <input type="checkbox" [(ngModel)]="saveMajorIncrement" />
+        <span>Save as new major version</span>
+        <button (click)="save()" class="confirm">Save</button>
+       </div>
+      <button (click)="execute()" class="confirm">Execute</button>
+    </div>
+  </section>
+</div>
+
+<div *ngIf="doingUpsertNature">
+  <ms-simple-dialog [autoSuggestType]="'nature'" (cancel)="cancelUpsertNature()" (save)="completeUpsertNature($event)" [value]="updatedNature" [label]="'Nature'" [placeholder]="'Nature Name'" [title]="(updatedNature)?'Update Nature':'Add Nature'"></ms-simple-dialog>
+</div>
+
+<div class="dialogCtr" id="upsertVariableCtr" *ngIf="doingUpsertVariable">
+  <section>
+    <label [msDraggable]="'#upsertVariableCtr'" id="upsertVariable">
+      <span *ngIf="updatedVariable">Update Variable</span><span *ngIf="!updatedVariable">Add Variable</span>
+    </label>
+    
+    <table>
+      <thead><tr>
+        <th class="variableName header">Name</th>
+        <th class="variableType header">Type</th>
+        <th class="variableDirection header">Direction</th>
+        <th class="variableMandatory header">Mandatory</th>
+      </thead>
+      <tbody><tr id="addVariableCtr" class="buttonCtr inputRow">
+        <td class="variableName" [class.mandatorySatisfied]="upsertedVariable.name"><input [(ngModel)]="upsertedVariable.name" [(value)]="upsertedVariable.name" [msAutoSuggest]="'variableNames'" class="variableName" placeholder="<name>"/></td>
+        <td class="variableType" [class.mandatorySatisfied]="upsertedVariable.type"><input [(ngModel)]="upsertedVariable.type" [(value)]="upsertedVariable.type" [msAutoSuggest]="'variableTypes'" placeholder="<type>"/></td>
+        <td class="variableDirection"><select [(ngModel)]="upsertedVariable.direction">
+          <option ng-selected="d == upsertedVariable.direction" *ngFor="let d of directionValues" [value]="d">{{d}}</option>
+        </select></td>
+        <td class="variableMandatory"><input [(ngModel)]="upsertedVariable.mandatory" type="checkbox" /></td>
+      </tr></tbody>
+    </table>
+    
+    <div class="buttonCtr">
+      <button class="confirm" (click)="completeUpsertVariable()">
+        <span *ngIf="updatedVariable">Update</span><span *ngIf="!updatedVariable">Add</span>
+      </button>
+      <button class="back" (click)="cancelUpsertVariable()">Cancel</button>
+    </div>
+  </section>
+</div>
+
+<ms-user-messages></ms-user-messages>
+
+<div id="dialogBackdrop" *ngIf="doingUpsertNature || doingUpsertVariable"></div>

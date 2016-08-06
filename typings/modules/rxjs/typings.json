@@ -1,0 +1,12 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "/Users/gk/Documents/WebstormProjects/modern-web-dev/node_modules/rxjs/package.json",
+    "raw": "npm:rxjs",
+    "main": "Rx.js",
+    "typings": "Rx.d.ts",
+    "version": "5.0.0-beta.6",
+    "global": false,
+    "name": "rxjs"
+  }
+}

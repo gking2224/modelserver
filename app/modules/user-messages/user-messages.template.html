@@ -1,0 +1,3 @@
+<div id="userMessages">
+    <ms-user-message *ngFor="let m of (messages | notDisabled)" [message]="m" (close)="closeMessage($event)"></ms-user-message>
+</div>
